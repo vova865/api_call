@@ -1,0 +1,24 @@
+<h2>Search for world weather by location</h2>
+
+<%= form_with(url: search_path, method: "get", local: true) do %>
+  <%= label_tag(:location, "Enter your location name:") %>
+  <%= text_field_tag(:location) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<p>
+<% if @response %>
+  <div>
+    <%
+=begin%>
+ <%= JSON.parse(@response.body).first["lat"] %>
+    <%= JSON.parse(@response.body).first["lon"] %> 
+<%
+=end%>
+    <p>
+    <%= JSON.parse(@response.body) %>
+    <p>
+    <%= JSON.parse(@response.body)['weather'].first['main'] %>
+  </div>
+<% end %>
+
+
